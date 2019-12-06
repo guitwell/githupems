@@ -83,31 +83,27 @@
             $("#" + subgrid_id).html("<table id='" + subgridTable + "'></table><div style='height: 50px' id='" + subgridPage + "'></div>")
             // 子表格JqGrid声明
             $("#" + subgridTable).jqGrid({
-                url: "${pageContext.request.contextPath}/Chapter/findByPage?parentid=" + row_id + "",
+                url: "${pageContext.request.contextPath}/Emp/findByPage?deptid=" + row_id + "",
                 datatype: "json",
-                colNames: ['编号', '名字', '大小（M）', '时长（分）', '在线试听'],
+                colNames: ['编号', '名字', '性别', '年龄', '生日'],
                 colModel: [
                     {name: "id", index: "num", width: 80, key: true},
                     {name: "name", editable: true, index: "item", width: 130},
-                    {name: "thesize", index: "item", width: 130},
-                    {name: "thelong", index: "item", width: 130},
                     {
-                        name: "theurl",
-                        editable: true,
-                        index: "item",
-                        edittype: 'file',
-                        width: 130,
-                        formatter: function (value, option, rows) {
-                            return "<audio controls loop>\n" +
-                                "  <source  src=" + value + " type=\"audio/mpeg\">\n" +
-                                "</audio>";
-                        }
-                    },
+                        name: "sex", editable: true, align: 'center', formatter: function (data) {
+                            if (data == "1") {
+                                return "男";
+                            } else return "女";
+                        }, editable: true, edittype: "select", editoptions: {value: "1:男;2:女"}
+                    }
+                    {name: "age", index: "item", editable: true, width: 130},
+                    {name: "birthday", index: "item", editable: true, width: 130},
+
                 ],
                 rowNum: 5,
                 rowList: [5, 10, 15, 20],
                 pager: "#" + subgridPage,
-                editurl: "${pageContext.request.contextPath}/Chapter/control?parentid=" + row_id + "",//开启编辑时执行编辑操作的url路径  添加  修改  删除
+                editurl: "${pageContext.request.contextPath}/Emp/control?deptid=" + row_id + "",//开启编辑时执行编辑操作的url路径  添加  修改  删除
                 height: '100%',
                 viewrecords: true,
                 styleUI: "Bootstrap",
@@ -119,25 +115,10 @@
                     addtext: "添加", deltext: "删除"
                 },
                 {//编辑时
-                    closeAfterEdit: true
+                    closeAfterEdit: true, editCaption: "编辑员工"
                 },
                 {//添加时
-                    closeAfterAdd: true, addCaption: "添加音频",
-                    afterSubmit: function (response) {
-                        var chapterId = response.responseJSON.chapterid;
-                        $.ajaxFileUpload({
-                            url: "${pageContext.request.contextPath}/Chapter/upload",
-                            datatype: "json",
-                            type: 'POST',
-                            data: {chapterid: chapterId},
-                            //指定的上传的input框的id
-                            fileElementId: "theurl",
-                            success: function (data) {
-                                $("#" + subgridTable).trigger("reloadGrid");
-                            }
-                        });
-                        return true;
-                    }
+                    closeAfterAdd: true, addCaption: "添加员工"
                 },
                 {//删除时
 
