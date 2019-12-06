@@ -43,4 +43,9 @@ public class DeplementServiceImpl implements DeplementService {
     public void deleteOne(String deptid) {
         deplementDao.deleteByPrimaryKey(deptid);
     }
+
+    @Override
+    public Integer getCount() {
+        return deplementDao.selectCount(new Deplement());
+    }
 }

@@ -43,5 +43,10 @@ public class EmployServiceImpl implements EmployService {
         employDao.delete(employ);
     }
 
+    @Override
+    public Integer getCount() {
+        return employDao.selectCount(new Employ());
+    }
+
 
 }

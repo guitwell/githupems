@@ -17,4 +17,6 @@ public interface DeplementService {
     void updateOne(Deplement deplement);
 
     void deleteOne(String deptid);
+
+    Integer getCount();
 }

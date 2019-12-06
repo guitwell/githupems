@@ -17,4 +17,6 @@ public interface EmployService {
     void updateOne(Employ employ);
 
     void deleteOne(Employ employ);
+
+    Integer getCount();
 }
