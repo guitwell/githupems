@@ -1,6 +1,8 @@
 package com.baizhi.controller;
 
+import com.baizhi.entity.Deplement;
 import com.baizhi.entity.Employ;
+import com.baizhi.service.DeplementService;
 import com.baizhi.service.EmployService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,16 +25,20 @@ import java.util.UUID;
 public class EmployController {
     @Autowired
     private EmployService employService;
+    @Autowired
+    private DeplementService deplementService;
 
     @ResponseBody   //员工的分页查询
     @RequestMapping("findByPage")
     public Map<String, Object> findByPage(String deptid, Integer rows, Integer page) {
+        System.out.println(deptid + "" + rows + "" + page);
         Map map = new HashMap();
         Integer listcount = employService.getCount();
         //计算最大页数
         Integer totalPage = (listcount % rows == 0) ? listcount / rows : listcount / rows + 1;
         //获取该页的内容
         List<Employ> byPage = employService.findByPage(page, rows, deptid);
+        System.out.println(byPage);
         //放当前页数
         map.put("page", page);
         //放入最大页数
@@ -51,12 +57,16 @@ public class EmployController {
         HashMap hashMap = new HashMap();
         if ("add".equals(oper)) {
             employ.setId(UUID.randomUUID().toString());
-            employ.setDepeid(deptid);
+            employ.setDeptid(deptid);
+            employService.addOne(employ);
             hashMap.put("theAdd", employ);
+            Deplement one = deplementService.findOne(deptid);
+            one.setCount(one.getCount() + 1);
+            deplementService.updateOne(one);
             return hashMap;
         }
         if ("edit".equals(oper)) {
-            employ.setDepeid(deptid);
+            employ.setDeptid(deptid);
             employService.updateOne(employ);
             hashMap.put("theUpdate", employ);
             return hashMap;
@@ -64,6 +74,9 @@ public class EmployController {
         if ("del".equals(oper)) {
             employService.deleteOne(employ);
             hashMap.put("theDelete", employ);
+            Deplement one = deplementService.findOne(deptid);
+            one.setCount(one.getCount() - 1);
+            deplementService.updateOne(one);
             return hashMap;
         }
         return null;

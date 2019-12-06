@@ -23,7 +23,7 @@ public class EmployServiceImpl implements EmployService {
     @Override
     public List<Employ> findByPage(Integer nowpage, Integer pagesize, String deptid) {
         Employ employ = new Employ();
-        employ.setDepeid(deptid);
+        employ.setDeptid(deptid);
         Integer thebegin = (nowpage - 1) * pagesize;
         return employDao.selectByRowBounds(employ, new RowBounds(thebegin, pagesize));
     }

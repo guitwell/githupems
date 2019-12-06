@@ -12,6 +12,8 @@ import java.util.List;
 public interface DeplementService {
     List<Deplement> findByPage(Integer nowpage, Integer pagesize);
 
+    Deplement findOne(String deptid);
+
     void addOne(Deplement deplement);
 
     void updateOne(Deplement deplement);

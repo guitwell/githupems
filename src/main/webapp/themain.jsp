@@ -34,7 +34,7 @@
                     height: 500,
                     colNames: ['编号', '部门号', '名字', '人数'],
                     colModel: [
-                        {name: 'id', index: 'id', width: 55, align: 'center'},
+                        {name: 'id', index: 'invdate', width: 55, align: 'center'},
                         {name: 'number', index: 'invdate', editable: true, width: 90, align: 'center'},
                         {name: 'name', index: 'invdate', editable: true, width: 90, align: 'center'},
                         {name: 'count', index: 'invdate', width: 90, align: 'center'},
@@ -95,7 +95,7 @@
                                 return "男";
                             } else return "女";
                         }, editable: true, edittype: "select", editoptions: {value: "1:男;2:女"}
-                    }
+                    },
                     {name: "age", index: "item", editable: true, width: 130},
                     {name: "birthday", index: "item", editable: true, width: 130},
 

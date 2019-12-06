@@ -36,7 +36,7 @@ public class DeplementController {
         //计算最大页数
         Integer totalPage = (listcount % rows == 0) ? listcount / rows : listcount / rows + 1;
         //获取该页的内容
-        List<Deplement> byPage = deplementService.findByPage(rows, page);
+        List<Deplement> byPage = deplementService.findByPage(page, rows);
         //放当前页数
         map.put("page", page);
         //放入最大页数
@@ -55,6 +55,7 @@ public class DeplementController {
         HashMap hashMap = new HashMap();
         if ("add".equals(oper)) {
             deplement.setId(UUID.randomUUID().toString());
+            deplement.setCount(0);
             deplementService.addOne(deplement);
             hashMap.put("theAdd", deplement);
             return hashMap;
@@ -67,7 +68,7 @@ public class DeplementController {
         if ("del".equals(oper)) {
             deplementService.deleteOne(deplement.getId());
             Employ employ = new Employ();
-            employ.setDepeid(deplement.getId());
+            employ.setDeptid(deplement.getId());
             employService.deleteOne(employ);
             hashMap.put("theDelete", deplement);
             return hashMap;

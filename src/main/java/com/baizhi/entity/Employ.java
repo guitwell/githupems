@@ -31,5 +31,5 @@ public class Employ implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
-    private String depeid;
+    private String deptid;
 }

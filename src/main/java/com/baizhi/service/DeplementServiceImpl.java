@@ -30,6 +30,11 @@ public class DeplementServiceImpl implements DeplementService {
     }
 
     @Override
+    public Deplement findOne(String deptid) {
+        return deplementDao.selectByPrimaryKey(deptid);
+    }
+
+    @Override
     public void addOne(Deplement deplement) {
         deplementDao.insert(deplement);
     }
