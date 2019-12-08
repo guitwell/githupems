@@ -61,6 +61,12 @@
            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
          </dependency>-->
 
+        <!--springboot继承redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
         <!--springboot依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -20,7 +20,14 @@ spring:
     multipart:
       max-file-size: 419430400
       max-request-size: 209715200
-
+  redis:
+    host: 192.168.253.10
+    port: 6379
+    database: 2 #使用2号库
 mybatis:
   mapper-locations: classpath:daoMappers/*Mapper.xml
   type-aliases-package: com.baizhi.entity
+logging:
+  level:
+    root: info
+    com.baizhi.dao: debug

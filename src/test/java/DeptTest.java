@@ -29,4 +29,15 @@ public class DeptTest {
     public void test2() {
         System.out.println(employService.findByPage(1, 5, "1"));
     }
+
+    @Test
+    public void test3() {
+        System.out.println(deplementService.findByPage(1, 10));
+    }
+
+    @Test
+    public void test4() {
+
+    }
+
 }
