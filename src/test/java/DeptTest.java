@@ -1,4 +1,5 @@
 import com.baizhi.GithupApplication;
+import com.baizhi.entity.Deplement;
 import com.baizhi.service.DeplementService;
 import com.baizhi.service.EmployService;
 import org.junit.Test;
@@ -37,7 +38,13 @@ public class DeptTest {
 
     @Test
     public void test4() {
+        Deplement deplement = new Deplement("5", "105", "测试部", 0);
+        deplementService.addOne(deplement);
+    }
 
+    @Test
+    public void test5() {
+        deplementService.deleteOne("5");
     }
 
 }

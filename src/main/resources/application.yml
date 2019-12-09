@@ -23,7 +23,7 @@ spring:
   redis:
     host: 192.168.253.10
     port: 6379
-    database: 2 #使用2号库
+    database: 5 #使用2号库
 mybatis:
   mapper-locations: classpath:daoMappers/*Mapper.xml
   type-aliases-package: com.baizhi.entity
